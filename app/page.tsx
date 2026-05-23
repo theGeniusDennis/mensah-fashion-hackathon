@@ -154,7 +154,7 @@ export default async function HomePage() {
       {/* Footer */}
       <footer className="w-full px-margin-desktop py-16 flex flex-col md:flex-row justify-between items-start gap-12 bg-surface-container-lowest border-t border-outline-variant/10">
         <div className="max-w-xs">
-          <h3 className="font-serif text-2xl text-on-surface mb-4">MENSAH</h3>
+          <span className="font-serif text-2xl tracking-[0.35em] text-on-surface font-normal block mb-4">MENSAH</span>
           <p className="text-on-surface-variant text-sm mb-6 opacity-60 leading-relaxed">
             Defining the visual language of the modern African gentleman through
             precision tailoring and digital innovation.

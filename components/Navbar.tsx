@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useCartStore } from "@/lib/cart-store";
-import { API_BASE } from "@/lib/api";
 
 export default function Navbar() {
   const { toggleCart, totalItems } = useCartStore();
@@ -29,16 +27,10 @@ export default function Navbar() {
 
       {/* Center Logo */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <Link href="/">
-          <Image
-            src={`${API_BASE}/images/mensah/logo.png`}
-            alt="MENSAH"
-            width={120}
-            height={36}
-            className="h-8 w-auto object-contain"
-            priority
-            unoptimized
-          />
+        <Link href="/" className="block">
+          <span className="font-serif text-[1.35rem] tracking-[0.4em] text-on-surface font-normal select-none">
+            MENSAH
+          </span>
         </Link>
       </div>
 
