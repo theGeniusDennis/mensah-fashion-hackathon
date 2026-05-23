@@ -20,7 +20,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection heroImageUrl={`${API_BASE}/images/mensah/outfit2.jpeg`} />
+      <HeroSection
+        heroImageUrl={`${API_BASE}/images/mensah/outfit1.jpeg`}
+        secondaryImageUrl={`${API_BASE}/images/mensah/outfit9.jpeg`}
+      />
 
       {/* Curated Visions — Campaigns */}
       <CampaignSection products={products} />
