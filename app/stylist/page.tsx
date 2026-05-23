@@ -50,6 +50,18 @@ export default function StylistPage() {
   }, []);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const occasion = params.get("occasion");
+    if (occasion) {
+      const aesthetic = params.get("aesthetic") ?? "Minimalist Executive";
+      const atmosphere = params.get("atmosphere") ?? "Commanding & Sharp";
+      setInput(
+        `I need a look for ${occasion}. My preferred aesthetic is ${aesthetic} with a ${atmosphere} feel.`
+      );
+    }
+  }, []);
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 

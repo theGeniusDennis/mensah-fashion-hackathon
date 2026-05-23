@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getProducts } from "@/lib/api";
-import { enrichProducts, EDITORIAL_CAMPAIGNS } from "@/lib/products";
+import { enrichProducts } from "@/lib/products";
 import { API_BASE } from "@/lib/api";
 import HeroSection from "@/components/landing/HeroSection";
 import CampaignSection from "@/components/landing/CampaignSection";
+import DigitalValetSection from "@/components/landing/DigitalValetSection";
 import ProductCard from "@/components/ProductCard";
 
 export default async function HomePage() {
@@ -25,127 +25,65 @@ export default async function HomePage() {
         secondaryImageUrl={`${API_BASE}/images/mensah/outfit9.jpeg`}
       />
 
-      {/* Curated Visions — Campaigns */}
+      {/* Editorial Campaigns */}
       <CampaignSection products={products} />
 
-      {/* Product Philosophy */}
-      <section className="bg-surface-container-low py-section-gap relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 items-center gap-16">
-          <div className="md:col-span-5">
-            <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-tertiary mb-4 block">
-              Our Philosophy
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-on-surface mb-8 leading-tight">
-              Precision.
-              <br />
-              <em>Uncompromised.</em>
-            </h2>
-            <p className="text-on-surface-variant text-lg leading-relaxed mb-10 max-w-sm">
-              Each garment is a dialogue between the tailor&apos;s hand and the
-              wearer&apos;s ambition. We source the world&apos;s finest natural
-              fibres to create pieces that transcend trends.
-            </p>
-            <div className="space-y-6">
-              {[
-                {
-                  label: "Crafted for You",
-                  desc: "Bespoke measurements guided through our proprietary AI concierge.",
-                },
-                {
-                  label: "Sustainable Luxury",
-                  desc: "Ethically sourced fabrics with a lifetime craftsmanship guarantee.",
-                },
-              ].map((item) => (
-                <div key={item.label} className="flex items-start gap-4">
-                  <div className="w-1 h-1 rounded-full bg-tertiary mt-2.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="text-[11px] font-semibold tracking-[0.1em] uppercase text-on-surface mb-1">
-                      {item.label}
-                    </h4>
-                    <p className="text-on-surface-variant text-sm opacity-70">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:col-span-6 md:col-start-7">
-            <div className="relative">
-              <div className="aspect-square overflow-hidden bg-surface-container-highest">
-                <Image
-                  src={`${API_BASE}/images/mensah/outfit4.jpeg`}
-                  alt="Mensah Craftsmanship"
-                  width={600}
-                  height={600}
-                  className="w-full h-full object-cover grayscale brightness-75"
-                  unoptimized
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 p-8 bg-background border border-outline-variant/20 hidden md:block">
-                <p className="font-serif text-xl italic text-on-surface">
-                  &ldquo;Modern heritage.&rdquo;
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Digital Valet */}
+      <DigitalValetSection />
 
       {/* Featured Products */}
       {featured.length > 0 && (
         <section className="py-section-gap px-margin-desktop max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-14 gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
             <div>
               <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-tertiary mb-3 block">
                 Selected Pieces
               </span>
-              <h2 className="font-serif text-4xl text-on-surface">
+              <h2 className="font-serif text-5xl md:text-6xl text-on-surface">
                 The Edit
               </h2>
+              <p className="text-on-surface-variant text-[10px] uppercase tracking-widest mt-2 opacity-50">
+                Curated Inventory for the Season
+              </p>
             </div>
             <Link
               href="/collections"
-              className="text-[11px] font-semibold tracking-[0.1em] uppercase text-tertiary border-b border-tertiary/30 pb-1 hover:border-tertiary transition-all"
+              className="text-[10px] uppercase tracking-widest text-on-surface border-b border-outline-variant/30 pb-1 hover:border-tertiary hover:text-tertiary transition-all self-start"
             >
-              View Full Collection
+              View All Pieces
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
             {featured.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} />
+              <div key={product.id} className={i % 2 === 1 ? "lg:translate-y-16" : ""}>
+                <ProductCard product={product} index={i} />
+              </div>
             ))}
           </div>
         </section>
       )}
 
-      {/* AI Stylist CTA */}
+      {/* WhatsApp Concierge CTA */}
       <section className="py-section-gap px-margin-desktop">
         <div className="max-w-[1440px] mx-auto">
-          <div className="bg-surface-container border border-outline-variant/20 p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0 bg-gradient-to-br from-tertiary to-transparent" />
-            </div>
-            <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-tertiary mb-4 block">
-              Mensah AI Stylist
+          <div className="bg-surface-container p-12 md:p-24 flex flex-col items-center text-center border border-outline-variant/10">
+            <span className="text-[10px] font-semibold tracking-[0.3em] uppercase text-tertiary mb-6 block">
+              Concierge Checkout
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-on-surface mb-6 max-w-2xl mx-auto leading-tight">
-              Your Personal Concierge. <em>Intelligently Curated.</em>
+            <h2 className="font-serif text-4xl md:text-6xl text-on-surface mb-8 leading-[1.05] max-w-3xl">
+              Complete your order with a Mensah stylist.
             </h2>
-            <p className="text-on-surface-variant text-lg max-w-lg mx-auto mb-10 opacity-80">
-              Describe your occasion, your aesthetic, your ambition — and let
-              the Mensah AI stylist assemble the perfect look for you.
+            <p className="text-on-surface-variant text-lg max-w-xl mx-auto mb-12 opacity-70 leading-relaxed">
+              Once your look is assembled, connect with a Mensah Concierge via
+              WhatsApp to finalise sizing, discuss tailoring requirements, and
+              confirm your private delivery.
             </p>
             <Link
-              href="/stylist"
-              className="inline-flex items-center gap-3 bg-primary-container border border-tertiary text-tertiary text-[12px] font-semibold tracking-[0.1em] uppercase px-10 py-5 hover:bg-tertiary hover:text-primary-container transition-all duration-500"
+              href="/checkout"
+              className="flex items-center gap-6 px-12 py-6 bg-on-surface text-background text-[10px] font-semibold tracking-[0.3em] uppercase hover:bg-tertiary hover:text-background transition-all duration-500"
             >
-              Begin Styling Session
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
+              Continue to WhatsApp Concierge
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             </Link>
           </div>
         </div>
@@ -179,7 +117,7 @@ export default async function HomePage() {
             <span className="text-[11px] font-semibold tracking-[0.1em] uppercase text-on-surface mb-1">
               Client Care
             </span>
-            {["Shipping", "Returns", "Contact"].map((item) => (
+            {["Sustainability", "Atelier Services", "Privacy"].map((item) => (
               <span
                 key={item}
                 className="text-[11px] tracking-wider uppercase text-on-surface-variant opacity-60"
@@ -189,7 +127,7 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-        <div className="w-full md:w-auto mt-8 md:mt-0 pt-8 md:pt-0 border-t md:border-t-0 border-outline-variant/10">
+        <div className="w-full md:w-auto">
           <p className="text-[10px] tracking-widest text-on-surface-variant opacity-40 uppercase">
             © 2024 Mensah Atelier. All rights reserved.
           </p>
