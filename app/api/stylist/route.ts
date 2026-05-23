@@ -3,9 +3,9 @@ import OpenAI from "openai";
 import { getProducts } from "@/lib/api";
 import { enrichProducts } from "@/lib/products";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
 export async function POST(req: NextRequest) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
   try {
     const { message, history } = await req.json();
 
